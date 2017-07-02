@@ -14,10 +14,17 @@ while day <= calendar.enddt %>
     <% if i.is_a? Issue %>
       <div class="calendar-issue-item">
         <!--<%= "#{i.project} -" unless @project && @project == i.project %>-->
-        <%= link_to(i.subject.truncate(60), i, :class => i.css_classes)%>
-          <!--<span class="tip">-->
-            <!--<%= render_issue_tooltip i %>-->
-          <!--</span>-->
+        <%= link_to(i, :class => i.css_classes) do %>
+          <span>
+            <%= i.subject.truncate(60) %>
+          </span>
+          <div class="calendar-issue-tooltip">
+            <div class="tooltip-header"><%= i.subject %></div>
+            <div><%= i.description %></div>
+          </div>
+
+        <% end %>
+
       </div>
     <% end %>
   <% end %>
