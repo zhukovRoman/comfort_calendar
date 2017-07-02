@@ -1,0 +1,33 @@
+.calendar-day.free{
+    background-color: rgba(0, 170,0, 0.1);
+}
+
+.calendar-day.full{
+    background-color: rgba(189, 69, 75, 0.1)
+}
+.calendar-day.odd{
+    background-color: #f6f7f8;
+}
+
+.calendar-issue-item{
+    background-color: rgba(58, 148, 58, 0.81);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.calendar-issue-item a{
+    color: white;
+}
+
+a.new-issue-calendar{
+    display: block;
+    text-align: center;
+    border: 1px dotted gray;
+    margin: 5px 0;
+    border-radius: 5px;
+    color: gray;
+    font-weight: bold;
+    background: rgba(128, 128, 128, 0.2);
+}

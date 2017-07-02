@@ -1,0 +1,44 @@
+<table class="cal">
+<thead>
+<tr><th scope="col" title="<%= l(:label_week) %>" class="week-number"></th><% 7.times do |i| %><th scope="col"><%= day_name( (calendar.first_wday+i)%7 ) %></th><% end %></tr>
+</thead>
+<tbody>
+<tr>
+<% day = calendar.startdt
+while day <= calendar.enddt %>
+  <%= ("<td class='week-number' title='#{ l(:label_week) }'>#{(day+(11-day.cwday)%7).cweek}</td>".html_safe) if day.cwday == calendar.first_wday %>
+  <td class="calendar-day <%= ' today' if User.current.today == day %> <%= calendar.events_on(day).count >= 6 ? 'full' : 'free' %> <%= day.month==calendar.month ? 'even' : 'odd' %>" >
+  <p class="day-num"><%= day.day %></p>
+  <% issues = calendar.events_on(day)%>
+  <% issues.each do |i| %>
+    <% if i.is_a? Issue %>
+      <div class="calendar-issue-item">
+        <!--<%= "#{i.project} -" unless @project && @project == i.project %>-->
+        <%= link_to(i.subject.truncate(60), i, :class => i.css_classes)%>
+          <!--<span class="tip">-->
+            <!--<%= render_issue_tooltip i %>-->
+          <!--</span>-->
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if issues.count < 6 %>
+      <% for iter in issues.count...6%>
+        <%= link_to(new_issue_path('issue[start_date]' => day), :class => 'new-issue-calendar') do %>
+            +
+        <% end %>
+      <% end %>
+  <% end %>
+
+</td>
+<%= '</tr><tr>'.html_safe if day.cwday==calendar.last_wday and day!=calendar.enddt %>
+<% day = day + 1
+end %>
+</tr>
+</tbody>
+</table>
+
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag "comfort_calendar.css", :media => "screen", :plugin => 'comfort_calendar'%>
+    <!--<%= javascript_include_tag "plugin.js" %>-->
+<% end %>
