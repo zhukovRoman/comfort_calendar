@@ -1,0 +1,66 @@
+# russian strings for pik-comfort calendar  go here for Rails i18n
+ru:
+  label_calendar: "Календарь приёмок"
+
+
+  label_issue: Заявка
+  label_issue_added: Добавлена заявка
+  label_issue_category_new: Новая категория
+  label_issue_category_plural: Категории заявки
+  label_issue_category: Категория заявок
+  label_issue_new: Новая заявка
+  label_issue_plural: Заявки
+  label_issues_by: "Сортировать по %{value}"
+  label_issue_status_new: Новый статус
+  label_issue_status_plural: Статусы заявок
+  label_issue_status: Статус заявки
+  label_issue_tracking: Заявки
+  label_issue_updated: Обновлена заявка
+  label_issue_view_all: Просмотреть все заявки
+
+  label_assigned_to_me_issues: Мои заявки
+  label_bulk_edit_selected_issues: Редактировать все выбранные заявки
+  label_related_issues: Связанные заявки
+  label_reported_issues: Созданные заявки
+  label_subtask_plural: Подзадачи
+  label_watched_issues: Отслеживаемые заявки
+  mail_body_reminder: "%{count} назначенных на Вас заявок на следующие %{days} дней:"
+  mail_subject_reminder: "%{count} назначенных на Вас заявок в ближайшие %{days} дней"
+  notice_no_issue_selected: "Не выбрано ни одной заявки! Пожалуйста, отметьте заявки, которые Вы хотите отредактировать."
+
+  permission_add_issues: Добавление заявок
+  permission_delete_issues: Удаление заявок
+  permission_edit_issues: Редактирование заявок
+  permission_manage_categories: Управление категориями заявок
+  permission_manage_issue_relations: Управление связыванием заявок
+  project_module_issue_tracking: Заявки
+
+  setting_issue_list_default_columns: Столбцы, отображаемые в списке заявок по умолчанию
+  setting_issues_export_limit: Ограничение по экспортируемым заявкам
+
+  text_issue_added: "Создана новая заявка %{id} (%{author})."
+
+  text_issue_updated: "Заявка %{id} была обновлена (%{author})."
+  text_tip_issue_begin_day: дата начала заявка
+  setting_issue_done_ratio_issue_status: Статус заявки
+  permission_view_issues: Просмотр заявок
+
+  label_issues_visibility_own: Заявки созданные или назначенные пользователю
+  field_issues_visibility: Видимость заявок
+  label_issues_visibility_all: Все заявки
+
+  notice_issue_successful_create: Заявка %{id} создана.
+
+  description_issue_category_reassign: Выберите категорию заявки
+
+  label_x_issues:
+      one:   "%{count} заявка"
+      few:   "%{count} заявки"
+      many:  "%{count} заявок"
+      other: "%{count} заявки"
+
+  label_attribute_of_issue: Заявка %{name}
+  label_assigned_issues: Назначенные заявки
+
+
+  # my_label: "My label"
