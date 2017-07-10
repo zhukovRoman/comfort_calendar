@@ -7,7 +7,7 @@
 <% day = calendar.startdt
 while day <= calendar.enddt %>
   <%= ("<td class='week-number' title='#{ l(:label_week) }'>#{(day+(11-day.cwday)%7).cweek}</td>".html_safe) if day.cwday == calendar.first_wday %>
-  <td class="calendar-day <%= ' today' if User.current.today == day %> <%= calendar.events_on(day).count >= 6 ? 'full' : 'free' %> <%= day.month==calendar.month ? 'even' : 'odd' %>" >
+  <td class="calendar-day <%= ' today' if User.current.today == day %> <%= calendar.events_on(day).count >= 8 ? 'full' : 'free' %> <%= day.month==calendar.month ? 'even' : 'odd' %>" >
   <p class="day-num"><%= day.day %></p>
   <% issues = calendar.events_on(day)%>
   <% issues.each do |i| %>
@@ -29,8 +29,8 @@ while day <= calendar.enddt %>
     <% end %>
   <% end %>
 
-  <% if issues.count < 6 %>
-      <% for iter in issues.count...6%>
+  <% if issues.count < 8 %>
+      <% for iter in issues.count...8%>
         <%= link_to(new_issue_path('issue[start_date]' => day), :class => 'new-issue-calendar') do %>
             +
         <% end %>
