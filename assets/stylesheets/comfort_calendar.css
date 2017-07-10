@@ -1,3 +1,9 @@
+table.cal thead th {
+    width: 17%;
+    /*fix for 6 days*/
+}
+
+
 .calendar-day.free{
     background-color: rgba(0, 170,0, 0.1);
 }
@@ -17,6 +23,7 @@
     margin: 5px 0;
     position: relative;
 }
+
 
 .calendar-issue-tooltip{
     position: absolute;
@@ -38,6 +45,39 @@
 .calendar-issue-item a{
     color: white;
 }
+
+
+
+.calendar-issue-item.half-day a {
+    width: 75%;
+}
+
+.calendar-issue-item .add-issue-value{
+    display: none;
+}
+
+.calendar-issue-item.half-day .add-issue-value{
+    display: block;
+    width: 15%;
+    float: right;
+    position: absolute;
+    height: 100%;
+    right: 0;
+    top: 0;
+    color: #333;
+    font-weight: bold;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    background: #ff7979;
+    border: 1px solid rgba(58, 148, 58, 0.81);
+    box-sizing: border-box;
+    text-align: center;
+}
+.half-day .add-issue-value span{
+    padding-top: 50%;
+    display: block;
+}
+
 
 .calendar-issue-item a:hover > .calendar-issue-tooltip{
     display: block;
