@@ -1,0 +1,74 @@
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag "comfort_calendar.css", :media => "screen", :plugin => 'comfort_calendar'%>
+    <%= javascript_include_tag "comfort_calendar.js", :plugin => 'comfort_calendar'%>
+<% end %>
+
+<h2>Настройка количества ресурсов</h2>
+
+
+Задать значение
+  <input type="number" value="6" id="def_value">
+  <button id="fill_all_days">на все дни</button>
+  или
+  <button id="fill_all_weekdays">на все рабочие дни</button>
+
+<%= form_tag(controller: 'comfort_resources', action: 'update', method: 'post') do %>
+<%= hidden_field_tag(:project_id, @project.identifier) %>
+<table class="resources-edit">
+  <thead>
+    <tr>
+      <% 7.times do |i| %>
+          <th scope="col">
+            <%= day_name( i+1 ) %>
+          </th>
+      <% end %>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% start_output_day = @start_date.at_beginning_of_week
+    day = start_output_day%>
+    <% end_output_day = @end_date.at_end_of_week %>
+
+    <tr>
+
+    <% while day <= end_output_day %>
+    <td class="<%= (day >= @current_date) ? '' : 'past-day'%>">
+      <span class="date-label"><%= I18n::l(day) %></span>
+      <% if day >= @start_date && day <= @end_date %>
+          <% if day >= @current_date %>
+              <input name="resources['<%= day %>']" type="number" value="<%= @resources[day]||0 %>"
+              data-weekend-data="<%= (day.sunday? || day.saturday?) %>">
+          <% else %>
+              <%= @resources[day] %>
+          <% end %>
+
+      <% end %>
+    </td>
+
+    <% if day.sunday? %>
+      </tr><tr>
+    <% end %>
+
+    <% day = day+1.day
+      end %>
+    </tr>
+  </tbody>
+</table>
+<%= submit_tag('Сохранить') %>
+<% end %>
+
+
+<script type="javascript">
+    $(document).ready(function () {
+        console.log('ready')
+    });
+ $(function () {
+
+
+     console.log('aaaaa')
+ })();
+
+</script>
+
+

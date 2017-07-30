@@ -93,3 +93,22 @@ a.new-issue-calendar{
     font-weight: bold;
     background: rgba(128, 128, 128, 0.2);
 }
+
+table.resources-edit{
+    border-collapse: collapse;
+}
+
+table.resources-edit td{
+    border: 1px solid lightgray;
+
+}
+
+table.resources-edit td.past-day{
+    background-color: rgba(211, 211, 211, 0.5);
+}
+
+table.resources-edit .date-label{
+    font-weight: bold;
+}
+
+

@@ -1,0 +1,55 @@
+<table class="cal">
+<thead>
+<tr><th scope="col" title="<%= l(:label_week) %>" class="week-number"></th><% 6.times do |i| %><th scope="col"><%= day_name( (calendar.first_wday+i)%7 ) %></th><% end %></tr>
+</thead>
+<tbody>
+<tr>
+<% day = calendar.startdt
+while day <= calendar.enddt %>
+  <%= ("<td class='week-number' title='#{ l(:label_week) }'>#{(day+(11-day.cwday)%7).cweek}</td>".html_safe) if day.cwday == calendar.first_wday %>
+  <% if day.cwday!=calendar.last_wday %>
+    <td class="calendar-day <%= ' today' if User.current.today == day %> <%= calendar.events_on(day).count >= @resources[day] ? 'full' : 'free' %> <%= day.month==calendar.month ? 'even' : 'odd' %>" >
+    <p class="day-num"><%= day.day %></p>
+    <% issues = calendar.events_on(day)%>
+    <% issues.each do |i| %>
+      <% if i.is_a? Issue %>
+        <% half_day = i.visible_custom_field_values[0].value == '1' %>
+        <div class="calendar-issue-item <%= half_day ? 'half-day' : '' %>">
+          <!--<%= "#{i.project} -" unless @project && @project == i.project %>-->
+          <%= link_to(i, :class => i.css_classes) do %>
+            <span>
+              <%= i.subject.truncate(60) %>
+            </span>
+            <span class = 'add-issue-value'> <span> + </span> </span>
+            <div class="calendar-issue-tooltip">
+              <div class="tooltip-header"><%= i.subject %></div>
+              <div><%= textilizable i, :description, :attachments => i.attachments%></div>
+            </div>
+
+          <% end %>
+
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if issues.count < @resources[day] %>
+        <% for iter in issues.count...@resources[day]%>
+          <%= link_to(new_issue_path('issue[start_date]' => day), :class => 'new-issue-calendar') do %>
+              +
+          <% end %>
+        <% end %>
+    <% end %>
+
+    </td>
+  <% end %>
+<%= '</tr><tr>'.html_safe if day.cwday==calendar.last_wday and day!=calendar.enddt %>
+<% day = day + 1
+end %>
+</tr>
+</tbody>
+</table>
+
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag "comfort_calendar.css", :media => "screen", :plugin => 'comfort_calendar'%>
+    <!--<%= javascript_include_tag "plugin.js" %>-->
+<% end %>

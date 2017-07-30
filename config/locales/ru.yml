@@ -1,7 +1,8 @@
 # russian strings for pik-comfort calendar  go here for Rails i18n
 ru:
-  label_calendar: "Календарь приёмок"
 
+  permission_edit_comfort_resources: Редактирование ресурсов
+  permission_view_comfort_calendar: Просмотр календаря приёмок
 
   label_issue: Заявка
   label_issue_added: Добавлена заявка
