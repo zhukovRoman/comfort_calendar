@@ -11,6 +11,16 @@
   <button id="fill_all_days">на все дни</button>
   или
   <button id="fill_all_weekdays">на все рабочие дни</button>
+  или
+<div>
+  <button class="fill_one_day_of_week" data-week-day-number="1">на все понедельинки</button>
+  <button class="fill_one_day_of_week" data-week-day-number="2">на все вторники</button>
+  <button class="fill_one_day_of_week" data-week-day-number="3">на все среды</button>
+  <button class="fill_one_day_of_week" data-week-day-number="4">на все четверги</button>
+  <button class="fill_one_day_of_week" data-week-day-number="5">на все пятницы</button>
+  <button class="fill_one_day_of_week" data-week-day-number="6">на все субботы</button>
+  <button class="fill_one_day_of_week" data-week-day-number="0">на все воскрсенья</button>
+</div>
 
 <%= form_tag(controller: 'comfort_resources', action: 'update', method: 'post') do %>
 <%= hidden_field_tag(:project_id, @project.identifier) %>
@@ -38,7 +48,8 @@
       <% if day >= @start_date && day <= @end_date %>
           <% if day >= @current_date %>
               <input name="resources['<%= day %>']" type="number" value="<%= @resources[day]||0 %>"
-              data-weekend-data="<%= (day.sunday? || day.saturday?) %>">
+              data-weekend-data="<%= (day.sunday? || day.saturday?) %>"
+              data-weekday="<%= day.wday %>">
           <% else %>
               <%= @resources[day] %>
           <% end %>
@@ -57,18 +68,5 @@
 </table>
 <%= submit_tag('Сохранить') %>
 <% end %>
-
-
-<script type="javascript">
-    $(document).ready(function () {
-        console.log('ready')
-    });
- $(function () {
-
-
-     console.log('aaaaa')
- })();
-
-</script>
 
 

@@ -56,6 +56,7 @@ class ComfortResourcesController < ApplicationController
     @project = Project.find(params[:project_id])
     @year = params[:year] || Date.current.year
     @start_date = Date.parse("#{@year}-01-01")
+    @start_date = Date.current if @start_date <= Date.current
     @end_date = @start_date.at_end_of_year
     
     @current_date = Date.current
