@@ -58,6 +58,7 @@ class ComfortResourcesController < ApplicationController
     @start_date = Date.parse("#{@year}-01-01")
     @start_date = Date.current if @start_date <= Date.current
     @end_date = @start_date.at_end_of_year
+    @end_date = @end_date+6.months if Date.current.month == 12
     
     @current_date = Date.current
     resources_by_dates = ComfortResource.where('resources_by >= :start_year', start_year: @start_date)
